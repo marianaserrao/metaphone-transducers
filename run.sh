@@ -9,12 +9,15 @@ for i in friendly/*.txt; do
 done
 
 
-# ############ convert words to openfst ############
-for w in tests/*.str; do
-	echo "Converting words: $w"
-	./word2fst.py `cat $w` > tests/$(basename $w ".str").txt
+# ############ convert words to openfst (EDITED) ############
+for f in test-strings/*.str; do
+	echo "Converting words: $f"
+    counter=1
+    for w in `cat $f`; do
+	    ./word2fst.py $w > tests/$(basename $f ".str").$counter.txt;
+        let counter++
+    done
 done
-
 
 # ############ Compile source transducers ############
 for i in sources/*.txt tests/*.txt; do
@@ -40,11 +43,22 @@ done
 
 
 
-# ############ tests  ############
+# ############ tests (EDITED) ############
 
-echo "Testing ABCDE"
+echo "Testing"
 
-for w in compiled/t-*.fst; do
-    fstcompose $w compiled/step3.txt.fst | fstshortestpath | fstproject --project_type=output |
+function output {
+    fstcompose $1 compiled/step$2.fst | fstshortestpath | fstproject --project_type=output |
     fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+}
+
+for s in $(seq 1 9); do
+    if ls compiled/t-step$s*.fst > /dev/null; then
+        printf "\nSTEP $s\n\n"
+        for w in compiled/t-step$s*.fst; do
+            output $w $s
+            echo "----------------------------------------"
+        done
+    fi
 done
+

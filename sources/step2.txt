@@ -62,31 +62,5 @@
 2	2	0	0
 2	5	M	M
 5	6	B	eps
-2	6	A	A	1
-2	6	E	E	1
-2	6	I	I	1
-2	6	O	O	1
-2	6	U	U	1
-2	6	B	B	1
-2	6	C	C	1
-2	6	D	D	1
-2	6	F	F	1
-2	6	G	G	1
-2	6	H	H	1
-2	6	J	J	1
-2	6	K	K	1
-2	6	L	L	1
-2	6	M	M	1
-2	6	N	N	1
-2	6	P	P	1
-2	6	Q	Q	1
-2	6	R	R	1
-2	6	S	S	1
-2	6	T	T	1
-2	6	V	V	1
-2	6	W	W	1
-2	6	X	X	1
-2	6	Y	Y	1
-2	6	Z	Z	1
-2	6	0	0	1
+2	6	eps	eps	1
 6
