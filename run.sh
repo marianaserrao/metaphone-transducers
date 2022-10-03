@@ -42,9 +42,9 @@ done
 
 # ############ tests  ############
 
-echo "Testing ABCDE"
+# echo "Testing ABCDE"
 
-for w in compiled/t-*.fst; do
-    fstcompose $w compiled/step3.txt.fst | fstshortestpath | fstproject --project_type=output |
-    fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
-done
+# for w in compiled/t-*.fst; do
+#     fstcompose $w compiled/step3.txt.fst | fstshortestpath | fstproject --project_type=output |
+#     fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# done
