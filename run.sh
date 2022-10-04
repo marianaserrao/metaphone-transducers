@@ -27,12 +27,14 @@ done
 
 # ############ CORE OF THE PROJECT  ############
 
+fstconcat compiled/step1.fst compiled/step2.fst compiled/concat.fst 
 
+echo "Testing Concat"
 
+./word2fst.py `cat test-strings/t-concat.str` > tests/t-concat.txt;
 
-
-
-
+fstcompose compiled/t-step1.1.fst compiled/concat.fst | fstshortestpath | fstproject --project_type=output |
+fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
 # ############ generate PDFs  ############
 echo "Starting to generate PDFs"
@@ -51,20 +53,21 @@ done
 #     fstcompose $w compiled/step3.txt.fst | fstshortestpath | fstproject --project_type=output |
 #     fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 # done
-echo "Testing"
 
-function output {
-    fstcompose $1 compiled/step$2.fst | fstshortestpath | fstproject --project_type=output |
-    fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
-}
+# echo "Testing"
 
-for s in $(seq 1 9); do
-    if ls compiled/t-step$s*.fst > /dev/null; then
-        printf "\nSTEP $s\n\n"
-        for w in compiled/t-step$s*.fst; do
-            output $w $s
-            echo "----------------------------------------"
-        done
-    fi
-done
+# function output {
+#     fstcompose $1 compiled/step$2.fst | fstshortestpath | fstproject --project_type=output |
+#     fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# }
+
+# for s in $(seq 1 9); do
+#     if ls compiled/t-step$s*.fst > /dev/null; then
+#         printf "\nSTEP $s\n\n"
+#         for w in compiled/t-step$s*.fst; do
+#             output $w $s
+#             echo "----------------------------------------"
+#         done
+#     fi
+# done
 
