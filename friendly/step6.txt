@@ -1,0 +1,16 @@
+0 0 symbol = .5
+0 0 Q K
+0 1 vowel =
+1 2 H eps 
+2 7 eps =
+2 0 consonant =
+0 3 C eps
+3 0 K =
+0 4 P eps
+4 0 H F
+0 5 S X
+5 0 H =
+5 6 I =
+6 0 [OA] =
+0 7 eps =
+7

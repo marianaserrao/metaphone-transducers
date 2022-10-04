@@ -1,0 +1,11 @@
+0 0 symbol = .5
+0 1 G eps
+1 2 H H
+2 0 symbol =
+0 3 G eps
+3 4 N N
+4 5 E E
+5 7 D D
+4 7 eps =
+0 7 eps =
+7
