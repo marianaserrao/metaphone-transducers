@@ -1,0 +1,5 @@
+0 1 symbol =
+1 1 consonant =
+1 1 0 0
+1 1 vowel eps
+1
