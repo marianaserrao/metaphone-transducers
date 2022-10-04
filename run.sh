@@ -27,14 +27,21 @@ done
 
 # ############ CORE OF THE PROJECT  ############
 
-fstconcat compiled/step1.fst compiled/step2.fst compiled/concat.fst 
+fstconcat compiled/step2.fst compiled/step3.fst compiled/concat.fst 
 
 echo "Testing Concat"
 
 ./word2fst.py `cat test-strings/t-concat.str` > tests/t-concat.txt;
 
-fstcompose compiled/t-step1.1.fst compiled/concat.fst | fstshortestpath | fstproject --project_type=output |
-fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+function concat_output {
+    fstcompose $1 compiled/concat.fst | fstshortestpath | fstproject --project_type=output |
+    fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+}
+
+for w in compiled/t-concat*.fst; do
+    concat_output $w
+    echo "----------------------------------------"
+done
 
 # ############ generate PDFs  ############
 echo "Starting to generate PDFs"
