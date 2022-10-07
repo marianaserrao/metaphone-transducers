@@ -5,7 +5,7 @@ mkdir -p compiled images
 # ############ Convert friendly and compile to openfst ############
 for i in friendly/*.txt; do
 	echo "Converting friendly: $i"
-   python3 compact2fst.py  $i  > sources/$(basename $i ".formatoAmigo")
+   python3 compact2fst.py  $i  > sources/$(basename $i)
 done
 
 
@@ -32,8 +32,8 @@ for i in $(seq 1 8); do
     if [ $i -eq 1 ]; then
         fstcompose compiled/step$i.fst compiled/step$f.fst compiled/compose1-$f.fst
     elif [ $i -eq 8 ]; then
-        fstcompose compiled/step$i.fst compiled/step$f.fst compiled/metaphoneLN.fst
-        fstinvert compiled/metaphoneLN.fst compiled/invertMetaphoneLN.fst 
+        fstcompose compiled/compose1-$i.fst compiled/step$f.fst compiled/metaphoneLN.fst
+        fstinvert compiled/metaphoneLN.fst compiled/invertMetaphoneLN.fst
     else
         fstcompose compiled/compose1-$i.fst compiled/step$f.fst compiled/compose1-$f.fst
     fi
@@ -66,13 +66,16 @@ for s in $(seq 1 9); do
     fi
 done
 
-echo "\n Testing algorithms \n"
+echo "\n Testing algorithms"
 
-for f in compiled/t-*-std*.fst; do
-    echo "Metaphone \n"
+echo "\n Metaphone \n"
+for f in compiled/t-*in*.fst; do
     output $f metaphoneLN.fst
     echo "----------------------------------------"
-    echo "Invert Metaphone \n"
+done
+
+echo "\n Invert Metaphone \n"
+for f in compiled/t-*out*.fst; do
     output $f invertMetaphoneLN.fst
     echo "----------------------------------------"
 done
