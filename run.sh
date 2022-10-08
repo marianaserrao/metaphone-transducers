@@ -10,7 +10,7 @@ done
 
 
 # ############ convert words to openfst ############
-for f in test-strings/*.str; do
+for f in tests/*.str; do
 	echo "Converting words: $f"
     counter=1
     for w in `cat $f`; do
